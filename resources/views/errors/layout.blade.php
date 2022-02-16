@@ -91,7 +91,7 @@
             <div class="error-box">
                 <h1 class="error-title">@yield('code')</h1>
                 <p class="error-text">@yield('message')</p>
-                <a href="/" class="btn-link">Go to home page</a>
+                <a href="@yield('link')" class="btn-link">Go to home page</a>
             </div>
             <div class="error-img">
                 <img src="/assets/images/ice-cream.svg" alt="Error Image" >
