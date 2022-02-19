@@ -64,14 +64,11 @@ class JwtService
 
         $config->setValidationConstraints(
             new IssuedBy(config('app.url')),
-//            new SignedWith()
             new SignedWith($config->signer(), $config->verificationKey())
         );
 
         $constraints = $config->validationConstraints();
         $config->validator()->assert($token, ...$constraints);
-
-//        return $config->verificationKey();
 
     }
 }

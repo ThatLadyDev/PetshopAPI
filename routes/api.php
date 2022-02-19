@@ -21,14 +21,18 @@ use Illuminate\Support\Facades\Route;
 
 //Route::get('/user', DummyController::class);
 
-//Route::post('/user/create', DummyController::class);
+Route::post('/user/create', Authentication\RegisterController::class);
 //Route::post('/user/forgot-password', DummyController::class);
 //Route::post('/user/login', DummyController::class);
 //Route::match(['get', 'head'], '/logout', DummyController::class);
 //Route::post('/user/reset-password-token', DummyController::class);
 
-Route::group(['middleware' => 'jwt.verify'], function () {
-    Route::get('user', DummyController::class);
+//Route::group(['middleware' => 'jwt.verify'], function () {
+//    Route::get('user', DummyController::class);
+//});
+
+Route::fallback(function (){
+    abort(404, 'API resource not found');
 });
 
 //| GET|HEAD  | api/v1/user                      |
