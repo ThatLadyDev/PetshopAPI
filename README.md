@@ -8,7 +8,7 @@ To generate a private key, run the following command:
 `
 
 To generate a new public key, run the following command:
-`openssl rand -base64 32`
+`openssl rsa -in storage/jwt/jwtRS256.key -pubout -outform PEM -out storage/jwt/jwtRS256.key.pub`
 
 The JWT Token issuer is the API server domain, this url is picked from the `.env` file in the root directory.
 So, endeavor to set the `APP_URL` to the api of your local server so the JWT Token service pick the right URL.

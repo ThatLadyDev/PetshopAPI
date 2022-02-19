@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
                 // You may use RSA or ECDSA and all their variations (256, 384, and 512) and EdDSA over Curve25519
                 new Signer\Rsa\Sha256(),
                 InMemory::file(config('jwt.private_key')),
-                InMemory::base64Encoded(config('jwt.public_key'))
+                InMemory::file(config('jwt.public_key'))
             );
         });
     }

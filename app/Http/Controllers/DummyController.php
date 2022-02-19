@@ -16,7 +16,9 @@ class DummyController extends Controller
     public function __invoke(JwtService $jwtService)
     {
         // TODO: Implement __invoke() method.
-        $token = $jwtService->issueToken();
-        return $token->toString();;
+//        $token = $jwtService->issueToken();
+//        return (['token' => $token->toString()]);
+
+        return "hello and okay";
     }
 }

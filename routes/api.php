@@ -19,4 +19,19 @@ use Illuminate\Support\Facades\Route;
 //    return $request->user();
 //});
 
-Route::get('/user', DummyController::class);
+//Route::get('/user', DummyController::class);
+
+//Route::post('/user/create', DummyController::class);
+//Route::post('/user/forgot-password', DummyController::class);
+//Route::post('/user/login', DummyController::class);
+//Route::match(['get', 'head'], '/logout', DummyController::class);
+//Route::post('/user/reset-password-token', DummyController::class);
+
+Route::group(['middleware' => 'jwt.verify'], function () {
+    Route::get('user', DummyController::class);
+});
+
+//| GET|HEAD  | api/v1/user                      |
+//| DELETE    | api/v1/user                      |
+//| GET|HEAD  | api/v1/user/orders               |
+//| PUT       | api/v1/user/edit
