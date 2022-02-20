@@ -16,7 +16,7 @@ class RegisterController extends Controller
     {
         try{
             $user  = $createUserAction->execute($request->all());
-            $token = $issueJwtTokenAction->execute($user);
+            $issueJwtTokenAction->execute($user);
 
             return new JsonResponse([
                 'success' => 1,
