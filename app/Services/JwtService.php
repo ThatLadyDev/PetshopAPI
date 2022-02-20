@@ -4,8 +4,6 @@ namespace App\Services;
 
 use DateTimeImmutable;
 use Illuminate\Container\Container;
-use Illuminate\Http\JsonResponse;
-use Lcobucci\JWT\Validation\RequiredConstraintsViolated;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Lcobucci\JWT\Configuration;
@@ -31,30 +29,28 @@ class JwtService
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
-    public function issueToken()
+    public function issueToken($uuid)
     {
         $config = $this->container->get(Configuration::class);
         assert($config instanceof Configuration);
 
         $now   = new DateTimeImmutable();
-        $token = $config->builder()
+        return $config->builder()
             // Configures the issuer (iss claim)
             ->issuedBy(config('app.url'))
             // Configures a new claim, called "user_uuid"
-            ->withClaim('user_uuid', 1)
+            ->withClaim('user_uuid', $uuid)
             // Configures a new header, called "product_type"
             ->withHeader('product_type', 'buckhill-petshop-api-899384')
             // Builds a new token
             ->getToken($config->signer(), $config->signingKey());
-
-        return $token;
     }
 
     /**
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
-    public function verifyToken($bearerToken)
+    public function verifyToken($bearerToken) : void
     {
         $config = $this->container->get(Configuration::class);
         assert($config instanceof Configuration);

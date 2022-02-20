@@ -18,7 +18,11 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
+        'uuid',
+        'ís_admin',
+        'avatar','address','phone_number','is_marketing',
         'email',
         'password',
     ];
@@ -39,12 +43,13 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'is_admin' => 'boolean',
-        'is_marketing' => 'boolean',
+        'is_admin'          => 'boolean',
+        'is_marketing'      => 'boolean',
         'email_verified_at' => 'datetime',
+        'last_login_at'     => 'datetime'
     ];
 
     public function token(){
-        return $this->hasOne(JwtToken::class, 'user_id');
+        return $this->hasOne(JwtToken::class);
     }
 }

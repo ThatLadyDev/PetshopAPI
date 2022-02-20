@@ -6,14 +6,17 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\UserRegistrationRequest;
 use Illuminate\Http\JsonResponse;
 use App\Actions\Auth\CreateUserAction;
+use App\Actions\Auth\IssueJwtTokenAction;
 use Exception;
 
 class RegisterController extends Controller
 {
-    public function __invoke(UserRegistrationRequest $request, CreateUserAction $createUserAction): JsonResponse
+    public function __invoke(UserRegistrationRequest $request, CreateUserAction $createUserAction, IssueJwtTokenAction $issueJwtTokenAction): JsonResponse
     {
         try{
-            $createUserAction->execute($request->all());
+            $user  = $createUserAction->execute($request->all());
+            $token = $issueJwtTokenAction->execute($user);
+
             return new JsonResponse(['success' => true, 'message' => 'Account Created Successfully'], 200);
         }
         catch(Exception $e){
