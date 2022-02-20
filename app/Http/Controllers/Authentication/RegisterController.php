@@ -7,20 +7,27 @@ use App\Http\Requests\Auth\UserRegistrationRequest;
 use Illuminate\Http\JsonResponse;
 use App\Actions\Auth\CreateUserAction;
 use App\Actions\Auth\IssueJwtTokenAction;
+use App\Http\Resources\UserResource;
 use Exception;
 
 class RegisterController extends Controller
 {
-    public function __invoke(UserRegistrationRequest $request, CreateUserAction $createUserAction, IssueJwtTokenAction $issueJwtTokenAction): JsonResponse
+    public function __invoke(UserRegistrationRequest $request, CreateUserAction $createUserAction, IssueJwtTokenAction $issueJwtTokenAction)
     {
         try{
             $user  = $createUserAction->execute($request->all());
             $token = $issueJwtTokenAction->execute($user);
 
-            return new JsonResponse(['success' => true, 'message' => 'Account Created Successfully'], 200);
+            return new JsonResponse([
+                'success' => 1,
+                'error'   => null,
+                'data'    => new UserResource($user),
+                'errors'  => [],
+                'extra'   => []
+            ], 200);
         }
         catch(Exception $e){
-            return new JsonResponse(['success' => false, 'message' => $e->getMessage()], 500);
+            return new JsonResponse(['success' => 0, 'error' => $e->getMessage()], 500);
         }
     }
 }
