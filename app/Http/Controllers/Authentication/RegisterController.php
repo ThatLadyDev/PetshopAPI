@@ -15,7 +15,7 @@ class RegisterController extends Controller
     public function __invoke(UserRegistrationRequest $request, CreateUserAction $createUserAction, IssueJwtTokenAction $issueJwtTokenAction)
     {
         try{
-            $user  = $createUserAction->execute($request->all());
+            $user  = $createUserAction->execute($request->all(), $request->routeIs('admin.create'));
             $issueJwtTokenAction->execute($user);
 
             return new JsonResponse([

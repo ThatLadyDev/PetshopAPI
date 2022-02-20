@@ -3,27 +3,22 @@
 namespace App\Actions\Auth;
 
 use App\Models\User;
+use Exception;
 use Illuminate\Support\Facades\Hash;
 
 class LoginUserAction
 {
-    public function execute($request) : User
+    /**
+     * @throws Exception
+     */
+    public function execute($request)
     {
-        return User::where('email', $request['email'])->firstOrFail();
+        $user = User::where('email', $request['email'])->firstOrFail();
 
-//        if (Hash::check($request->password, $user->password)) {
-//            $token = $user->createToken('Laravel Password Grant Client')->accessToken;
-//            $response = ['token' => $token];
-//            return response($response, 200);
-//        }
-//        else {
-//            $response = ["message" => "Password mismatch"];
-//            return response($response, 422);
-//        }
-//        }
-//        else {
-//            $response = ["message" =>'User does not exist'];
-//            return response($response, 422);
-//        }
+        if(!Hash::check($request['password'], $user->password)) {
+            throw new Exception('Invalid Password');
+        }
+
+        return $user;
     }
 }

@@ -21,8 +21,12 @@ use Illuminate\Support\Facades\Route;
 
 //Route::get('/user', DummyController::class);
 
-Route::post('/user/create', Authentication\RegisterController::class);
+Route::post('/user/create', Authentication\RegisterController::class)->name('user.create');
 Route::post('/user/login', Authentication\LoginController::class);
+
+Route::post('/admin/create', Authentication\RegisterController::class)->name('admin.create');
+Route::post('/admin/login', Authentication\LoginController::class);
+
 //Route::match(['get', 'head'], '/logout', DummyController::class);
 //Route::post('/user/reset-password-token', DummyController::class);
 
