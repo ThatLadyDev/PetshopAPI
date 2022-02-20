@@ -27,7 +27,7 @@ return new class extends Migration
             $table->double('delivery_fee', 8, 2)->nullable();
             $table->double('amount', 12, 2);
             $table->timestamps();
-            $table->timestamp('shipped_at');
+            $table->timestamp('shipped_at')->nullable();
         });
     }
 
