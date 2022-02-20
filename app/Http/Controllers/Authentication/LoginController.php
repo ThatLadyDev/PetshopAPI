@@ -16,7 +16,7 @@ class LoginController extends Controller
     public function __invoke(UserLoginRequest $request, LoginUserAction $loginUserAction, IssueJwtTokenAction $issueJwtTokenAction): JsonResponse
     {
         try{
-            $user  = $loginUserAction->execute($request->all());
+            $user  = $loginUserAction->execute($request->all(), $request->routeIs('admin.login'));
             $token = $issueJwtTokenAction->execute($user);
 
             return new JsonResponse([
