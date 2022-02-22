@@ -9,11 +9,13 @@ use App\Actions\Auth\LoginUserAction;
 use App\Actions\Auth\IssueJwtTokenAction;
 use App\Http\Resources\UserResource;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Support\Facades\Auth;
 use Exception;
 
 class LoginController extends Controller
 {
-    public function __invoke(UserLoginRequest $request, LoginUserAction $loginUserAction, IssueJwtTokenAction $issueJwtTokenAction): JsonResponse
+    public function __invoke(UserLoginRequest $request, LoginUserAction $loginUserAction, IssueJwtTokenAction $issueJwtTokenAction)
     {
         try{
             $user  = $loginUserAction->execute($request->all(), $request->routeIs('admin.login'));
@@ -42,5 +44,6 @@ class LoginController extends Controller
 
             return new JsonResponse(['success' => 0, 'error' => $e->getMessage()], 500);
         }
+
     }
 }

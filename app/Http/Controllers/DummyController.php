@@ -21,4 +21,9 @@ class DummyController extends Controller
 
         return "hello and okay";
     }
+
+//    public function testing()
+//    {
+
+//    }
 }

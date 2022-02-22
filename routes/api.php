@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/user/create', Authentication\RegisterController::class)->name('user.create');
 Route::post('/user/login', Authentication\LoginController::class)->name('user.login');
-//Route::post('/user/login', Authentication\LoginController::class)->name('user.login');
 
 Route::post('/admin/create', Authentication\RegisterController::class)->name('admin.create');
 Route::post('/admin/login', Authentication\LoginController::class)->name('admin.login');
@@ -25,9 +24,10 @@ Route::post('/admin/login', Authentication\LoginController::class)->name('admin.
 //Route::match(['get', 'head'], '/logout', DummyController::class);
 //Route::post('/user/reset-password-token', DummyController::class);
 
-//Route::group(['middleware' => 'jwt.verify'], function () {
-//    Route::get('user', DummyController::class);
-//});
+Route::group(['middleware' => 'jwt.verify'], function () {
+//    Route::post('/order-status/create', OrderStatus\CreateController::class);
+    Route::get('/logout', DummyController::class);
+});
 
 Route::fallback(function (){
     abort(404, 'API resource not found');
