@@ -6,6 +6,7 @@ use Closure;
 use Exception;
 use Illuminate\Http\Request;
 use App\Services\JwtService;
+use Illuminate\Support\Facades\Auth;
 use Lcobucci\JWT\Validation\RequiredConstraintsViolated;
 use Illuminate\Http\JsonResponse;
 
@@ -27,7 +28,11 @@ class JwtMiddleware
     public function handle(Request $request, Closure $next)
     {
         try {
-            $this->jwtService->verifyToken($request->bearerToken());
+            if ($request->bearerToken() === null){
+                throw new Exception('Authorization Token Required!');
+            }
+            $token = $this->jwtService->verifyToken($request->bearerToken());
+            $request->request->add(['uuid' => $token]);
         }
         catch (Exception $e) {
             if ($e instanceof RequiredConstraintsViolated){

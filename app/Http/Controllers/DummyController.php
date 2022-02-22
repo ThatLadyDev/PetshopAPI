@@ -4,14 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\JwtService;
+use Illuminate\Support\Facades\Auth;
 use Lcobucci\JWT\Token\Plain;
 
 class DummyController extends Controller
 {
-//    public function __construct()
-//    {
-//
-//    }
 
     public function __invoke(JwtService $jwtService)
     {
@@ -19,7 +16,7 @@ class DummyController extends Controller
 //        $token = $jwtService->issueToken();
 //        return (['token' => $token->toString()]);
 
-        return "hello and okay";
+        return Auth::user();
     }
 
 //    public function testing()

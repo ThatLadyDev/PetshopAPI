@@ -8,7 +8,7 @@ class SaveJwtTokenToDatabaseAction
 {
     public function execute($user, $token) : void
     {
-        $user->token()->create([
+        $user->tokens()->create([
             'unique_id'     => $token,
             'token_title'   => 'Petshop User'
         ]);

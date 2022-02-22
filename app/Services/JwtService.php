@@ -50,7 +50,7 @@ class JwtService
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
-    public function verifyToken($bearerToken) : void
+    public function verifyToken($bearerToken) : string
     {
         $config = $this->container->get(Configuration::class);
         assert($config instanceof Configuration);
@@ -65,6 +65,8 @@ class JwtService
 
         $constraints = $config->validationConstraints();
         $config->validator()->assert($token, ...$constraints);
+
+        return $token->claims()->get('user_uuid');
 
     }
 }

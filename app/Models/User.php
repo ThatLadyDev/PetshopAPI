@@ -48,7 +48,7 @@ class User extends Authenticatable
         'last_login_at'     => 'datetime'
     ];
 
-    public function token(){
+    public function tokens(){
         return $this->hasOne(JwtToken::class);
     }
 }

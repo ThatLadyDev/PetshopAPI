@@ -21,12 +21,14 @@ Route::post('/user/login', Authentication\LoginController::class)->name('user.lo
 Route::post('/admin/create', Authentication\RegisterController::class)->name('admin.create');
 Route::post('/admin/login', Authentication\LoginController::class)->name('admin.login');
 
-//Route::match(['get', 'head'], '/logout', DummyController::class);
 //Route::post('/user/reset-password-token', DummyController::class);
 
-Route::group(['middleware' => 'jwt.verify'], function () {
+Route::group(['middleware' => ['jwt.verify', 'auth:api']], function () {
 //    Route::post('/order-status/create', OrderStatus\CreateController::class);
-    Route::get('/logout', DummyController::class);
+    Route::match(['get', 'head'], '/user/logout', Authentication\LogoutController::class)->name('user.logout');
+    Route::match(['get', 'head'], '/admin/logout', Authentication\LogoutController::class)->name('admin.logout');
+
+//    Route::get('/test', DummyController::class);
 });
 
 Route::fallback(function (){

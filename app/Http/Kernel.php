@@ -24,6 +24,15 @@ class Kernel extends HttpKernel
     ];
 
     /**
+     * Responsible for prioritizing the middleware
+     *
+     * @var array
+     */
+    protected $middlewarePriority = [
+        \App\Http\Middleware\JwtMiddleware::class,
+    ];
+
+    /**
      * The application's route middleware groups.
      *
      * @var array<string, array<int, class-string|string>>
