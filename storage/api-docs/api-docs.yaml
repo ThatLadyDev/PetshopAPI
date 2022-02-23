@@ -40,10 +40,57 @@ paths:
           description: 'Page Not found'
         422:
           description: 'Unprocessable Entity'
+  /api/v1/admin/login:
+    post:
+      tags:
+        - Admin
+      summary: 'Login An Admin Account'
+      operationId: adminLogin
+      parameters:
+        -
+          name: email
+          in: query
+          required: true
+          schema:
+            type: string
+        -
+          name: password
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+        401:
+          description: Unauthenticated
+        500:
+          description: 'Internal Server Error'
+        404:
+          description: 'Page Not found'
+        422:
+          description: 'Unprocessable Entity'
   /api/v1/user/logout:
     get:
       tags:
         - User
+      summary: 'Logout A User Account'
+      operationId: userLogout
+      responses:
+        200:
+          description: Success
+        401:
+          description: Unauthenticated
+        500:
+          description: 'Internal Server Error'
+        404:
+          description: 'Page Not found'
+        422:
+          description: 'Unprocessable Entity'
+  /api/v1/admin/logout:
+    get:
+      tags:
+        - Admin
       summary: 'Logout A User Account'
       operationId: userLogout
       responses:
@@ -65,17 +112,35 @@ paths:
       operationId: userCreate
       parameters:
         -
-          name: first_name
+          name: email
           in: query
           required: true
           schema:
             type: string
         -
-          name: last_name
+          name: password
           in: query
           required: true
           schema:
             type: string
+      responses:
+        200:
+          description: Success
+        401:
+          description: Unauthenticated
+        500:
+          description: 'Internal Server Error'
+        404:
+          description: 'Page Not found'
+        422:
+          description: 'Unprocessable Entity'
+  /api/v1/admin/create:
+    post:
+      tags:
+        - Admin
+      summary: 'Create An Admin Account'
+      operationId: adminCreate
+      parameters:
         -
           name: email
           in: query
@@ -88,18 +153,6 @@ paths:
           required: true
           schema:
             type: string
-        -
-          name: password_confirmation
-          in: query
-          required: true
-          schema:
-            type: string
-        -
-          name: is_marketing
-          in: query
-          required: true
-          schema:
-            type: boolean
       responses:
         200:
           description: Success
