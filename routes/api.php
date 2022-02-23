@@ -37,6 +37,13 @@ Route::group(['middleware' => ['jwt.verify', 'auth:api']], function () {
      */
     Route::match(['get', 'head'], '/admin/logout', Authentication\LogoutController::class)->name('admin.logout');
     Route::match(['get', 'head'], '/admin/user-listing', Account\ListUsersController::class); //still needs to be worked on
+
+    /*
+     * Mainpage URLs
+     */
+//    Route::get('/main/promotions', Mainpage\ListAllPromotionsController::class);
+//    Route::get('/main/blog', Mainpage\ListAllPostsController::class);
+//    Route::get('/main/blog/{uuid}', Mainpage\FetchAPostController::class);
 });
 
 Route::fallback(function (){
