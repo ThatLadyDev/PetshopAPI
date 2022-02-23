@@ -11,6 +11,20 @@ use Exception;
 
 class FetchAPostController extends Controller
 {
+    /**
+     * @OA\Get(
+     ** path="/api/v1/main/blog/{uuid}",
+     *   tags={"MainPage"},
+     *   summary="Fetch A Single Post",
+     *   operationId="singlePost",
+     *
+     *   @OA\Response(response=200,description="Success"),
+     *   @OA\Response(response=401,description="Unauthenticated"),
+     *   @OA\Response(response=500,description="Internal Server Error"),
+     *   @OA\Response(response=404,description="Page Not found"),
+     *   @OA\Response(response=422,description="Unprocessable Entity")
+     *),
+     **/
     public function __invoke($uuid, FetchAPostAction $fetchAPostAction) : JsonResponse
     {
         try {

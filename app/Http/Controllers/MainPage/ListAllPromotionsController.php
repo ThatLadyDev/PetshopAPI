@@ -10,7 +10,21 @@ use App\Actions\MainPage\ListAllPromotionsAction;
 
 class ListAllPromotionsController extends Controller
 {
-    public function __invoke(ListAllPromotionsAction $listAllPromotionsAction)
+    /**
+     * @OA\Get(
+     ** path="/api/v1/main/promotions",
+     *   tags={"MainPage"},
+     *   summary="Fetch All Promotions",
+     *   operationId="allPromotions",
+     *
+     *   @OA\Response(response=200,description="Success"),
+     *   @OA\Response(response=401,description="Unauthenticated"),
+     *   @OA\Response(response=500,description="Internal Server Error"),
+     *   @OA\Response(response=404,description="Page Not found"),
+     *   @OA\Response(response=422,description="Unprocessable Entity")
+     *),
+     **/
+    public function __invoke(ListAllPromotionsAction $listAllPromotionsAction) : JsonResponse
     {
         try {
             $promotions = $listAllPromotionsAction->execute();
