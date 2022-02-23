@@ -12,6 +12,20 @@ use App\Http\Resources\UserResource;
 
 class ListUsersController extends Controller
 {
+    /**
+     * @OA\Get(
+     ** path="/api/v1/admin/user-listing",
+     *   tags={"Admin"},
+     *   summary="List All Users Accounts",
+     *   operationId="userList",
+     *
+     *   @OA\Response(response=200,description="Success"),
+     *   @OA\Response(response=401,description="Unauthenticated"),
+     *   @OA\Response(response=500,description="Internal Server Error"),
+     *   @OA\Response(response=404,description="Page Not found"),
+     *   @OA\Response(response=422,description="Unprocessable Entity")
+     *),
+     **/
     public function __invoke(ListUsersAction $listUsersAction) : JsonResponse
     {
         try {

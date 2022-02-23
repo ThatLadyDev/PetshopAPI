@@ -28,9 +28,9 @@ Route::group(['middleware' => ['jwt.verify', 'auth:api']], function () {
      * User URLs
      */
     Route::match(['get', 'head'], '/user/logout', Authentication\LogoutController::class)->name('user.logout');
+    Route::match(['get', 'head'], '/user', Account\SingleUserController::class);
     Route::put('/user/edit', Account\EditUserController::class);
     Route::delete('/user', Account\DeleteUserController::class);
-    Route::match(['get', 'head'], '/user', Account\SingleUserController::class);
 
     /*
      * Admin URLs

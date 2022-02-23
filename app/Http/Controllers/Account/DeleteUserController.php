@@ -9,6 +9,20 @@ use App\Actions\Account\DeleteUserAction;
 
 class DeleteUserController extends Controller
 {
+    /**
+     * @OA\Delete(
+     ** path="/api/v1/user",
+     *   tags={"User"},
+     *   summary="Delete A User Account",
+     *   operationId="userDelete",
+     *
+     *   @OA\Response(response=200,description="Success"),
+     *   @OA\Response(response=401,description="Unauthenticated"),
+     *   @OA\Response(response=500,description="Internal Server Error"),
+     *   @OA\Response(response=404,description="Page Not found"),
+     *   @OA\Response(response=422,description="Unprocessable Entity")
+     *),
+     **/
     public function __invoke(Request $request, DeleteUserAction $deleteUserAction) : JsonResponse
     {
         try {
