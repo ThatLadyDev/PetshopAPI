@@ -25,8 +25,16 @@ Route::post('/admin/login', Authentication\LoginController::class)->name('admin.
 
 Route::group(['middleware' => ['jwt.verify', 'auth:api']], function () {
 //    Route::post('/order-status/create', OrderStatus\CreateController::class);
+    /*
+     * User URLs
+     */
     Route::match(['get', 'head'], '/user/logout', Authentication\LogoutController::class)->name('user.logout');
+
+    /*
+     * Admin URLs
+     */
     Route::match(['get', 'head'], '/admin/logout', Authentication\LogoutController::class)->name('admin.logout');
+    Route::match(['get', 'head'], '/admin/user-listing', Account\ListUsersController::class); //still needs to be worked on
 
 //    Route::get('/test', DummyController::class);
 });
