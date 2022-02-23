@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 
 class CreateController extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke(Request $request) : void
     {
         OrderStatus::create([
             "uuid"  => Str::uuid(),

@@ -94,6 +94,7 @@ class JwtGuard implements Guard
     public function id() : string|null
     {
         if ($user = $this->user()) {
+            // @phpstan-ignore-next-line
             return $this->user()->getAuthIdentifier();
         }
 
@@ -103,13 +104,12 @@ class JwtGuard implements Guard
     /**
      * Set the current user.
      *
-     * @param  Array $user User info
+     * @param  Authenticatable $user User info
      * @return void
      */
-    public function setUser(Authenticatable $user)
+    public function setUser(Authenticatable $user) : void
     {
         $this->user = $user;
-        return $this;
     }
 
     /**
@@ -125,7 +125,7 @@ class JwtGuard implements Guard
         return (!empty($jsondata) ? json_decode($jsondata, TRUE, 512, JSON_THROW_ON_ERROR) : NULL);
     }
 
-    public function validate(array $credentials = [], ) : bool
+    public function validate(array $credentials = [] ) : bool
     {
         if (empty($credentials['email']) || empty($credentials['password'])) {
             if (!$credentials=$this->getJsonParams()) {
@@ -149,14 +149,16 @@ class JwtGuard implements Guard
      *
      * @return void
      */
-    public function logout()
+    public function logout() : void
     {
         $user = $this->user();
 
         // If we have an event dispatcher instance, we can fire off the logout event
         // so any further processing can be done. This allows the developer to be
         // listening for anytime a user signs out of this application manually.
+        // @phpstan-ignore-next-line
         if (isset($this->events)) {
+            // @phpstan-ignore-next-line
             $this->events->dispatch(new Logout($this->name, $user));
         }
 

@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Auth;
 
 class Authenticate extends Middleware
 {
+    public Guard $guard;
+
     public function __construct(FactoryAuth $auth, Guard $guard)
     {
         parent::__construct($auth);
@@ -39,6 +41,7 @@ class Authenticate extends Middleware
             JwtToken::where('unique_id', $request->bearerToken())->firstOrFail();
             $user = User::where('uuid', $request->get('uuid'))->first();
 
+            // @phpstan-ignore-next-line
             $this->guard->setUser($user);
             $this->authenticate($request, $guards);
         }
@@ -58,13 +61,13 @@ class Authenticate extends Middleware
     /**
      * Handle an unauthenticated user.
      *
-     * @param  Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @param  array  $guards
      * @return void
      *
      * @throws AuthenticationException
      */
-    protected function unauthenticated($request, array $guards)
+    protected function unauthenticated($request, array $guards) : void
     {
         throw new AuthenticationException(
             'Unauthenticated.', $guards

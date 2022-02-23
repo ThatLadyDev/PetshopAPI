@@ -3,12 +3,13 @@
 namespace App\Actions\Auth;
 
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class CreateUserAction
 {
-    public function execute($request, $admin_path_bool) : User
+    public function execute(array $request, bool $admin_path_bool) : User
     {
         return User::create([
             'uuid'         => Str::uuid(),

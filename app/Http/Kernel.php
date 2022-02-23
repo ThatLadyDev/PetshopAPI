@@ -26,7 +26,7 @@ class Kernel extends HttpKernel
     /**
      * Responsible for prioritizing the middleware
      *
-     * @var array
+     * @var string[]
      */
     protected $middlewarePriority = [
         \App\Http\Middleware\JwtMiddleware::class,

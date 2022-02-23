@@ -45,7 +45,7 @@ class LoginController extends Controller
      *   @OA\Response(response=422,description="Unprocessable Entity")
      *)
      **/
-    public function __invoke(UserLoginRequest $request, LoginUserAction $loginUserAction, IssueJwtTokenAction $issueJwtTokenAction)
+    public function __invoke(UserLoginRequest $request, LoginUserAction $loginUserAction, IssueJwtTokenAction $issueJwtTokenAction) : JsonResponse
     {
         try{
             $user  = $loginUserAction->execute($request->all(), $request->routeIs('admin.login'));

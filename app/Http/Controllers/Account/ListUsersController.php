@@ -12,7 +12,7 @@ use App\Http\Resources\UserResource;
 
 class ListUsersController extends Controller
 {
-    public function __invoke(ListUsersAction $listUsersAction)
+    public function __invoke(ListUsersAction $listUsersAction) : JsonResponse
     {
         try {
             $users = $listUsersAction->execute();

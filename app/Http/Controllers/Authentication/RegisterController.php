@@ -52,7 +52,7 @@ class RegisterController extends Controller
      *   @OA\Response(response=422,description="Unprocessable Entity")
      *)
      **/
-    public function __invoke(UserRegistrationRequest $request, CreateUserAction $createUserAction, IssueJwtTokenAction $issueJwtTokenAction)
+    public function __invoke(UserRegistrationRequest $request, CreateUserAction $createUserAction, IssueJwtTokenAction $issueJwtTokenAction) : JsonResponse
     {
         try{
             $user  = $createUserAction->execute($request->all(), $request->routeIs('admin.create'));

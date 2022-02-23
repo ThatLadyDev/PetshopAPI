@@ -14,6 +14,8 @@ use Lcobucci\JWT\Validation\Constraint\SignedWith;
 
 class JwtService
 {
+    public Container $container;
+
     /**
      * Create a new class instance.
      *
@@ -29,7 +31,7 @@ class JwtService
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
-    public function issueToken($uuid)
+    public function issueToken(String $uuid) : Plain
     {
         $config = $this->container->get(Configuration::class);
         assert($config instanceof Configuration);
@@ -50,7 +52,7 @@ class JwtService
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
-    public function verifyToken($bearerToken) : string
+    public function verifyToken(string $bearerToken) : string
     {
         $config = $this->container->get(Configuration::class);
         assert($config instanceof Configuration);

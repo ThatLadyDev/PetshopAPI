@@ -12,7 +12,7 @@ use App\Actions\Account\EditUserAction;
 
 class EditUserController extends Controller
 {
-    public function __invoke(Request $request, EditUserAction $editUserAction)
+    public function __invoke(Request $request, EditUserAction $editUserAction) : JsonResponse
     {
         try {
             $user = $editUserAction->execute($request);

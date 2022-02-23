@@ -31,7 +31,7 @@ class LogoutController extends Controller
      *   @OA\Response(response=422,description="Unprocessable Entity")
      *)
      **/
-    public function __invoke(Request $request, LogoutUserAction $logoutUserAction)
+    public function __invoke(Request $request, LogoutUserAction $logoutUserAction) : JsonResponse
     {
         try {
             $logoutUserAction->execute($request->routeIs('admin.logout'));

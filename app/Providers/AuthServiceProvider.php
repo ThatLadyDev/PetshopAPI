@@ -30,6 +30,7 @@ class AuthServiceProvider extends ServiceProvider
         // add custom guard
         Auth::extend('jwt', function ($app, $name, array $config) {
             // Return an instance of Illuminate\Contracts\Auth\Guard...
+            // @phpstan-ignore-next-line
             return new JwtGuard(Auth::createUserProvider($config['provider']), $app->make('request'));
         });
 
