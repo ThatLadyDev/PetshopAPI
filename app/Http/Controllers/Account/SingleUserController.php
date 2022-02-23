@@ -7,5 +7,8 @@ use Illuminate\Http\Request;
 
 class SingleUserController extends Controller
 {
-    //
+    public function __invoke()
+    {
+        return "single user";
+    }
 }
