@@ -43,7 +43,7 @@ Route::group(['middleware' => ['jwt.verify', 'auth:api']], function () {
      */
     Route::get('/main/promotions', Mainpage\ListAllPromotionsController::class);
     Route::get('/main/blog', Mainpage\ListAllPostsController::class);
-//    Route::get('/main/blog/{uuid}', Mainpage\FetchAPostController::class);
+    Route::get('/main/blog/{uuid}', Mainpage\FetchAPostController::class);
 });
 
 Route::fallback(function (){
