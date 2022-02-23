@@ -1,4 +1,4 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://res.cloudinary.com/xxsavage/image/upload/v1645652322/tumblr_pczuh2tk0G1vewxszo1_1280-removebg-preview.png" width="80"></a></p>
+<p align="center"><a href="#" target="_blank"><img src="https://res.cloudinary.com/xxsavage/image/upload/v1645652322/tumblr_pczuh2tk0G1vewxszo1_1280-removebg-preview.png" width="150"></a></p>
 
 ## About Petshop API
 
