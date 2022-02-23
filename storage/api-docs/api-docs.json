@@ -164,6 +164,22 @@
                 "operationId": "userCreate",
                 "parameters": [
                     {
+                        "name": "first_name",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "last_name",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
                         "name": "email",
                         "in": "query",
                         "required": true,
@@ -177,6 +193,23 @@
                         "required": true,
                         "schema": {
                             "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password_confirmation",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "is_marketing",
+                        "in": "query",
+                        "required": false,
+                        "allowEmptyValue": true,
+                        "schema": {
+                            "type": "boolean"
                         }
                     }
                 ],
@@ -208,6 +241,22 @@
                 "operationId": "adminCreate",
                 "parameters": [
                     {
+                        "name": "first_name",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "last_name",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
                         "name": "email",
                         "in": "query",
                         "required": true,
@@ -221,6 +270,23 @@
                         "required": true,
                         "schema": {
                             "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password_confirmation",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "is_marketing",
+                        "in": "query",
+                        "required": false,
+                        "allowEmptyValue": true,
+                        "schema": {
+                            "type": "boolean"
                         }
                     }
                 ],

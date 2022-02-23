@@ -18,8 +18,14 @@ class RegisterController extends Controller
      *   tags={"User"},
      *   summary="Create A User Account",
      *   operationId="userCreate",
+     *   @OA\Parameter(name="first_name",in="query",required=true,@OA\Schema(type="string")),
+     *   @OA\Parameter(name="last_name",in="query",required=true,@OA\Schema(type="string")),
      *   @OA\Parameter(name="email",in="query",required=true,@OA\Schema(type="string")),
      *   @OA\Parameter(name="password",in="query",required=true,@OA\Schema(type="string")),
+     *   @OA\Parameter(name="password_confirmation",in="query",required=true,@OA\Schema(type="string")),
+     *   @OA\Parameter(name="is_marketing",in="query",required=false,allowEmptyValue=true,@OA\Schema(type="boolean")),
+     *
+     *
      *   @OA\Response(response=200,description="Success"),
      *   @OA\Response(response=401,description="Unauthenticated"),
      *   @OA\Response(response=500,description="Internal Server Error"),
@@ -31,8 +37,14 @@ class RegisterController extends Controller
      *   tags={"Admin"},
      *   summary="Create An Admin Account",
      *   operationId="adminCreate",
+     *   @OA\Parameter(name="first_name",in="query",required=true,@OA\Schema(type="string")),
+     *   @OA\Parameter(name="last_name",in="query",required=true,@OA\Schema(type="string")),
      *   @OA\Parameter(name="email",in="query",required=true,@OA\Schema(type="string")),
      *   @OA\Parameter(name="password",in="query",required=true,@OA\Schema(type="string")),
+     *   @OA\Parameter(name="password_confirmation",in="query",required=true,@OA\Schema(type="string")),
+     *   @OA\Parameter(name="is_marketing",in="query",required=false,allowEmptyValue=true,@OA\Schema(type="boolean")),
+     *
+     *
      *   @OA\Response(response=200,description="Success"),
      *   @OA\Response(response=401,description="Unauthenticated"),
      *   @OA\Response(response=500,description="Internal Server Error"),
