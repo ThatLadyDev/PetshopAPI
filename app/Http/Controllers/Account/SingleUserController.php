@@ -26,7 +26,7 @@ class SingleUserController extends Controller
      *   @OA\Response(response=422,description="Unprocessable Entity")
      *),
      **/
-    public function __invoke(SingleUserAction $singleUserAction)
+    public function __invoke(SingleUserAction $singleUserAction) : JsonResponse
     {
         try {
             $user = $singleUserAction->execute();

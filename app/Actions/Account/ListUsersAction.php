@@ -12,6 +12,7 @@ class ListUsersAction
 {
     public function execute() : LengthAwarePaginator
     {
+        /** @var User */
         if (Auth::user()->is_admin !== true){
             throw new Exception('Unauthorized access');
         }

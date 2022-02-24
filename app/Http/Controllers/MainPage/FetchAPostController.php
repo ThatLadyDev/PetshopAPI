@@ -25,7 +25,7 @@ class FetchAPostController extends Controller
      *   @OA\Response(response=422,description="Unprocessable Entity")
      *),
      **/
-    public function __invoke($uuid, FetchAPostAction $fetchAPostAction) : JsonResponse
+    public function __invoke(string $uuid, FetchAPostAction $fetchAPostAction) : JsonResponse
     {
         try {
             $post = $fetchAPostAction->execute($uuid);

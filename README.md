@@ -32,6 +32,12 @@ on are:
   - Implementation of laravel's default middleware to protect api routes and guard against injection attacks
   - There is also another middleware to protect secure routes, this middleware validates the authenticity of the user token and allow only admin tokens into the administrative side and the user tokens on the user side
 - **All listing routes implements pagination and orders in descending order**
+- **User Story**
+  - Request params and possible responses can be inspected using the swagger documentation
+  - Admin credentials will not change
+    - **admin@buckhill.co.uk/admin** (Account has been created already with this credential)
+  - User emails will change, but the password will remain the same.
+    - password: **userpassword** (Dummy accounts have been created already with this password)
 
 ## Prerequisites
 - **Composer**
@@ -58,6 +64,11 @@ php artisan key:generate
 Create a database named "petshop" as it corresponds to what's in the .env file. (Feel free to edit this)
 ```
 
+### Seed the database
+```
+php artisan db:seed
+```
+
 ### Migrate database tables
 ```
 php artisan migrate
@@ -76,7 +87,7 @@ feel free to change this to any port of your choosing_
 http://127.0.0.1:9300/api/documentation
 ```
 
-## Application Logic Structure
+## Application Code Structure
 - All api routes are in the `routes/api.php` file
 - All controllers are in the `app/Http/Controllers` folder
 - Single action controllers are made use of.

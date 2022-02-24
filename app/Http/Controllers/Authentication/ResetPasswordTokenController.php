@@ -29,7 +29,7 @@ class ResetPasswordTokenController extends Controller
      *   @OA\Response(response=422,description="Unprocessable Entity")
      *),
      **/
-    public function __invoke(ResetPasswordTokenRequest $request, ResetPasswordTokenAction $resetPasswordTokenAction)
+    public function __invoke(ResetPasswordTokenRequest $request, ResetPasswordTokenAction $resetPasswordTokenAction) : JsonResponse
     {
         try {
             $resetPasswordTokenAction->execute($request);

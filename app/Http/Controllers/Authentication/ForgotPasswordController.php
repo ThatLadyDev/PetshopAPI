@@ -25,7 +25,7 @@ class ForgotPasswordController extends Controller
      *   @OA\Response(response=422,description="Unprocessable Entity")
      *),
      **/
-    public function __invoke(Request $request, ForgotPasswordAction $forgotPasswordAction)
+    public function __invoke(Request $request, ForgotPasswordAction $forgotPasswordAction) : JsonResponse
     {
         try {
             $token = $forgotPasswordAction->execute($request);
