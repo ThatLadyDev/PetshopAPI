@@ -11,7 +11,7 @@ class ForgotPasswordAction
     /**
      * @throws Exception
      */
-    public function execute(Request $request) : string
+    public function execute(Request $request): string
     {
         $user = Password::getUser($request->only('email'));
         if (is_null($user)) {

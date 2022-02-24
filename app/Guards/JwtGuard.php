@@ -60,9 +60,9 @@ class JwtGuard implements Guard
      */
     public function __construct(UserProvider $provider, Request $request)
     {
-        $this->request  = $request;
+        $this->request = $request;
         $this->provider = $provider;
-        $this->name     = 'api';
+        $this->name = 'api';
     }
 
     /**
@@ -70,9 +70,9 @@ class JwtGuard implements Guard
      *
      * @return bool
      */
-    public function guest() : bool
+    public function guest(): bool
     {
-        return ! $this->check();
+        return !$this->check();
     }
 
     /**
@@ -80,9 +80,9 @@ class JwtGuard implements Guard
      *
      * @return bool
      */
-    public function hasUser() : bool
+    public function hasUser(): bool
     {
-        return ! is_null($this->user);
+        return !is_null($this->user);
     }
 
     /**
@@ -90,7 +90,7 @@ class JwtGuard implements Guard
      *
      * @return string|null
      */
-    public function id() : string|null
+    public function id(): string|null
     {
         if ($user = $this->user()) {
             // @phpstan-ignore-next-line
@@ -103,10 +103,10 @@ class JwtGuard implements Guard
     /**
      * Set the current user.
      *
-     * @param  Authenticatable $user User info
+     * @param Authenticatable $user User info
      * @return void
      */
-    public function setUser(Authenticatable $user) : void
+    public function setUser(Authenticatable $user): void
     {
         $this->user = $user;
     }
@@ -121,20 +121,20 @@ class JwtGuard implements Guard
     {
         $jsondata = $this->request->query('jsondata');
 
-        return (!empty($jsondata) ? json_decode($jsondata, TRUE, 512, JSON_THROW_ON_ERROR) : NULL);
+        return (!empty($jsondata) ? json_decode($jsondata, true, 512, JSON_THROW_ON_ERROR) : null);
     }
 
-    public function validate(array $credentials = [] ) : bool
+    public function validate(array $credentials = []): bool
     {
         if (empty($credentials['email']) || empty($credentials['password'])) {
-            if (!$credentials=$this->getJsonParams()) {
+            if (!$credentials = $this->getJsonParams()) {
                 return false;
             }
         }
 
         $user = $this->provider->retrieveByCredentials($credentials);
 
-        if (! is_null($user) && $this->provider->validateCredentials($user, $credentials)) {
+        if (!is_null($user) && $this->provider->validateCredentials($user, $credentials)) {
             $this->setUser($user);
 
             return true;
@@ -148,7 +148,7 @@ class JwtGuard implements Guard
      *
      * @return void
      */
-    public function logout() : void
+    public function logout(): void
     {
         $user = $this->user();
 
@@ -178,7 +178,7 @@ class JwtGuard implements Guard
         return isset($this->user);
     }
 
-    public function is_admin() : bool
+    public function is_admin(): bool
     {
         return $this->user->is_admin === true;
     }
