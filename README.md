@@ -55,8 +55,7 @@ php artisan key:generate
 ### Database creation
 
 ```
-Create a database named "petshop" as it corresponds to what's 
-in the .env file. (Feel free to edit this)
+Create a database named "petshop" as it corresponds to what's in the .env file. (Feel free to edit this)
 ```
 
 ### Migrate database tables
@@ -96,10 +95,12 @@ _A brief explanation of the logic structure of this application_
 * nunomaduro/larastan
 * barryvdh/laravel-ide-helper
 
+---
 #### darkaonline/l5-swagger
 To read more about this libarary, click <a href="https://github.com/DarkaOnLine/L5-Swagger">here</a>
 > If you'd like to regenerate docs, run `php artisan l5-swagger:generate`
 
+---
 #### lcobucci/jwt
 This jwt package like other packages needs private and public keys, the location of which is in the `storage/jwt` folder.
 - **Private key name:** `jwtRS256.pem`
