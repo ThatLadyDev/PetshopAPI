@@ -100,6 +100,25 @@ _A brief explanation of the logic structure of this application_
 To read more about this libarary, click <a href="https://github.com/DarkaOnLine/L5-Swagger">here</a>
 > If you'd like to regenerate docs, run `php artisan l5-swagger:generate`
 
+#### lcobucci/jwt
+This jwt package like other packages needs private and public keys, the location of which is in the `storage/jwt` folder.
+- **Private key name:** `jwtRS256.pem`
+- **Public key name:** `jwtRS256.pem.pub`
+
+If you'd like to generate a new private key, run the following command:
+```
+openssl genrsa -out storage/jwt/jwtRS256.pem 2048
+```
+
+If you'd like to generate a new public key that corresponds to your newly created private key, run the following command:
+```
+openssl rsa -in storage/jwt/jwtRS256.key -pubout -outform PEM -out storage/jwt/jwtRS256.key.pub
+```
+
+__The JWT Token issuer is the API server domain, this url is picked from the `.env` file in the root directory.
+So, endeavor to set the `APP_URL` to the api of your local server so the JWT Token service pick the right URL.__
+
+
 
 ---
 ### Things To Note
