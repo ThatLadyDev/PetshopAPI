@@ -34,6 +34,7 @@ on are:
 - **All listing routes implements pagination and orders in descending order**
 - **User Story**
   - Request params and possible responses can be inspected using the swagger documentation
+  - Database gets truncated and reseeded everyday at midnight UTC.
   - Admin credentials will not change
     - **admin@buckhill.co.uk/admin** (Account has been created already with this credential)
   - User emails will change, but the password will remain the same.
@@ -72,6 +73,16 @@ php artisan db:seed
 ### Migrate database tables
 ```
 php artisan migrate
+```
+
+### Truncate and reseed database tables
+```
+php artisan db:truncate-reseed
+```
+
+### Run tasks scheduler
+```
+php artisan schedule:work
 ```
 
 ### Serve the application
