@@ -3,7 +3,7 @@
 ## About Petshop API
 This project is a test application for a pseudo petshop. The functionality I picked to work
 on are:
-- User Endpoints
+- **User Endpoints**
   - Login
   - Logout
   - Forgot password
@@ -12,26 +12,26 @@ on are:
   - Delete a user
   - Get a single user (The authenticated user)
   - Edit a single user (The authenticated user)
-- Admin Endpoints
+- **Admin Endpoints**
   - Login
   - Logout
   - Registration
   - List users who are not admins
-- Main page endpoints
+- **Main page endpoints**
   - List all created blog posts
   - Fetch a single blog post
   - Get all created promotions
 
 **Others**
-- Api prefix `/api/v1/{route_name}`
-- Bearer token authentication.
+- **Api prefix** `/api/v1/{route_name}`
+- **Bearer token authentication.**
   - It contains user_uuid as a claim
-  - The issuer is the API server domain `http:127.0.0.1:9300`
+  - The issuer is the API server domain `http://127.0.0.1:9300`
   - The implementation makes use of an asymmetric key
-- Middleware protection
+- **Middleware protection**
   - Implementation of laravel's default middleware to protect api routes and guard against injection attacks
   - There is also another middleware to protect secure routes, this middleware validates the authenticity of the user token and allow only admin tokens into the administrative side and the user tokens on the user side
-- All listing routes implements pagination and orders in descending order
+- **All listing routes implements pagination and orders in descending order**
 
 ## Prerequisites
 - **Composer**
