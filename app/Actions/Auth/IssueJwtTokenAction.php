@@ -2,9 +2,9 @@
 
 namespace App\Actions\Auth;
 
-use App\Services\JwtService;
 use App\Actions\Auth\SaveJwtTokenToDatabaseAction;
 use App\Models\User;
+use App\Services\JwtService;
 use Illuminate\Contracts\Auth\Authenticatable;
 
 class IssueJwtTokenAction
@@ -18,7 +18,7 @@ class IssueJwtTokenAction
         $this->saveJwtTokenToDatabaseAction = $saveJwtTokenToDatabaseAction;
     }
 
-    public function execute(Authenticatable|null $user) : string
+    public function execute(Authenticatable|null $user): string
     {
         // @phpstan-ignore-next-line
         $token = $this->jwtService->issueToken($user->uuid)->toString();

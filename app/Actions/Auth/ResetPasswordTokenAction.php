@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 
 class ResetPasswordTokenAction
 {
-    public function execute(ResetPasswordTokenRequest $request) : void
+    public function execute(ResetPasswordTokenRequest $request): void
     {
         $status = Password::reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
@@ -23,7 +23,7 @@ class ResetPasswordTokenAction
             }
         );
 
-        if($status !== Password::PASSWORD_RESET){
+        if ($status !== Password::PASSWORD_RESET) {
             throw new Exception(__($status));
         }
     }

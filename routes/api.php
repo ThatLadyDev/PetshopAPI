@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -46,7 +46,7 @@ Route::group(['middleware' => ['jwt.verify', 'auth:api']], function () {
     Route::get('/main/blog/{uuid}', Mainpage\FetchAPostController::class);
 });
 
-Route::fallback(function (){
+Route::fallback(function () {
     abort(404, 'API resource not found');
 });
 

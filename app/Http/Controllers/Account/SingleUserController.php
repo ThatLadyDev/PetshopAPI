@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers\Account;
 
+use App\Actions\Account\SingleUserAction;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
 use Exception;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use App\Actions\Account\SingleUserAction;
-use Illuminate\Support\Js;
-use App\Http\Resources\UserResource;
 
 class SingleUserController extends Controller
 {
@@ -26,21 +24,20 @@ class SingleUserController extends Controller
      *   @OA\Response(response=422,description="Unprocessable Entity")
      *),
      **/
-    public function __invoke(SingleUserAction $singleUserAction) : JsonResponse
+    public function __invoke(SingleUserAction $singleUserAction): JsonResponse
     {
         try {
             $user = $singleUserAction->execute();
 
             return new JsonResponse([
                 'success' => 1,
-                "data"    => new UserResource($user),
-                "error"   => null,
-                "errors"  => [],
-                "extra"   => []
+                "data" => new UserResource($user),
+                "error" => null,
+                "errors" => [],
+                "extra" => []
             ], 200);
-        }
-        catch (Exception $e){
-            return new JsonResponse( ['success' => 0, 'error' => $e->getMessage()], 500);
+        } catch (Exception $e) {
+            return new JsonResponse(['success' => 0, 'error' => $e->getMessage()], 500);
         }
     }
 }

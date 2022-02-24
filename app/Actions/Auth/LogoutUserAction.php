@@ -2,15 +2,16 @@
 
 namespace App\Actions\Auth;
 
-use Illuminate\Support\Facades\Auth;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 
 class LogoutUserAction
 {
-    public function execute(bool $admin_path_bool) : void
+    public function execute(bool $admin_path_bool): void
     {
         // @phpstan-ignore-next-line
-        if ((Auth::user()->is_admin !== true && $admin_path_bool === true) || (Auth::user()->is_admin === true && $admin_path_bool !== true)){
+        if ((Auth::user()->is_admin !== true && $admin_path_bool === true) || (Auth::user(
+                )->is_admin === true && $admin_path_bool !== true)) {
             throw new Exception('Unauthorized access');
         }
 

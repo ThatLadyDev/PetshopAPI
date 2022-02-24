@@ -2,12 +2,12 @@
 
 namespace App\Actions\Account;
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Support\Facades\Auth;
 
 class SingleUserAction
 {
-    public function execute() : Authenticatable|null
+    public function execute(): Authenticatable|null
     {
         return Auth::user();
     }

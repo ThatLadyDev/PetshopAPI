@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\OrderStatus;
+use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
 class OrderStatusSeeder extends Seeder
@@ -18,23 +17,25 @@ class OrderStatusSeeder extends Seeder
     {
         $statuses = [
             [
-                "uuid"  => Str::uuid(),
+                "uuid" => Str::uuid(),
                 "title" => "cancelled",
             ],
             [
-                "uuid"  => Str::uuid(),
+                "uuid" => Str::uuid(),
                 "title" => "shipped",
             ],
             [
-                "uuid"  => Str::uuid(),
+                "uuid" => Str::uuid(),
                 "title" => "paid",
             ],
             [
-                "uuid"  => Str::uuid(),
+                "uuid" => Str::uuid(),
                 "title" => "pending payment",
             ]
         ];
 
-        collect($statuses)->each(function ($status) { OrderStatus::create($status); });
+        collect($statuses)->each(function ($status) {
+            OrderStatus::create($status);
+        });
     }
 }

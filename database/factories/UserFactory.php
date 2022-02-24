@@ -19,13 +19,13 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'uuid'         => Str::uuid(),
-            'first_name'   => $this->faker->firstName,
-            'last_name'    => $this->faker->lastName,
-            'email'        => $this->faker->unique()->safeEmail(),
-            'is_admin'     => 0,
-            'password'     => Hash::make('userpassword'),
-            'is_marketing' => rand(0,1),
+            'uuid' => Str::uuid(),
+            'first_name' => $this->faker->firstName,
+            'last_name' => $this->faker->lastName,
+            'email' => $this->faker->unique()->safeEmail(),
+            'is_admin' => 0,
+            'password' => Hash::make('userpassword'),
+            'is_marketing' => rand(0, 1),
         ];
     }
 

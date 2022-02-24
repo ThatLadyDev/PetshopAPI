@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Authentication;
 
+use App\Actions\Auth\ForgotPasswordAction;
 use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use App\Actions\Auth\ForgotPasswordAction;
 
 class ForgotPasswordController extends Controller
 {
@@ -25,25 +25,24 @@ class ForgotPasswordController extends Controller
      *   @OA\Response(response=422,description="Unprocessable Entity")
      *),
      **/
-    public function __invoke(Request $request, ForgotPasswordAction $forgotPasswordAction) : JsonResponse
+    public function __invoke(Request $request, ForgotPasswordAction $forgotPasswordAction): JsonResponse
     {
         try {
             $token = $forgotPasswordAction->execute($request);
 
             return new JsonResponse([
                 'success' => 1,
-                'data'    => [
+                'data' => [
                     'reset_token' => $token
                 ],
-                'error'   => null,
-                'errors'  => [],
-                'extra'   => []
+                'error' => null,
+                'errors' => [],
+                'extra' => []
             ], 200);
-        }
-        catch (Exception $e){
-            return new JsonResponse( [
+        } catch (Exception $e) {
+            return new JsonResponse([
                 'success' => 0,
-                'error'   => $e->getMessage()
+                'error' => $e->getMessage()
             ], 500);
         }
     }

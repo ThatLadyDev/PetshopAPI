@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
+use Exception;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use Exception;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Post>
@@ -25,10 +25,10 @@ class PostFactory extends Factory
         $post = implode($post);
 
         return [
-            'uuid'  => Str::uuid(),
+            'uuid' => Str::uuid(),
             'title' => $title,
-            'slug'  => Str::slug($title, '-'),
-            'content'  => $post,
+            'slug' => Str::slug($title, '-'),
+            'content' => $post,
             'metadata' => [
                 'image' => Str::uuid(),
                 'author' => $this->faker->name

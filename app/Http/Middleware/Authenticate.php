@@ -2,17 +2,16 @@
 
 namespace App\Http\Middleware;
 
-use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use App\Models\JwtToken;
+use App\Models\User;
+use Closure;
 use Illuminate\Auth\AuthenticationException;
+use Illuminate\Auth\Middleware\Authenticate as Middleware;
 use Illuminate\Contracts\Auth\Factory as FactoryAuth;
+use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
-use App\Models\User;
-use App\Models\JwtToken;
-use Closure;
-use Illuminate\Support\Facades\Auth;
 
 //use Laravel\Sanctum\Guard;
 
@@ -44,14 +43,13 @@ class Authenticate extends Middleware
             // @phpstan-ignore-next-line
             $this->guard->setUser($user);
             $this->authenticate($request, $guards);
-        }
-        catch (ModelNotFoundException $e){
+        } catch (ModelNotFoundException $e) {
             return new JsonResponse([
                 'success' => 0,
-                'data'    => [],
-                'error'   => 'Invalid Token',
-                'errors'  => [],
-                'extra'   => []
+                'data' => [],
+                'error' => 'Invalid Token',
+                'errors' => [],
+                'extra' => []
             ], 422);
         }
 
@@ -61,13 +59,13 @@ class Authenticate extends Middleware
     /**
      * Handle an unauthenticated user.
      *
-     * @param  Request  $request
-     * @param  array  $guards
+     * @param Request $request
+     * @param array $guards
      * @return void
      *
      * @throws AuthenticationException
      */
-    protected function unauthenticated($request, array $guards) : void
+    protected function unauthenticated($request, array $guards): void
     {
         throw new AuthenticationException(
             'Unauthenticated.', $guards

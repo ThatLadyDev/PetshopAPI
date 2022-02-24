@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\MainPage;
 
+use App\Actions\MainPage\ListAllPromotionsAction;
 use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use App\Actions\MainPage\ListAllPromotionsAction;
 
 class ListAllPromotionsController extends Controller
 {
@@ -24,25 +23,24 @@ class ListAllPromotionsController extends Controller
      *   @OA\Response(response=422,description="Unprocessable Entity")
      *),
      **/
-    public function __invoke(ListAllPromotionsAction $listAllPromotionsAction) : JsonResponse
+    public function __invoke(ListAllPromotionsAction $listAllPromotionsAction): JsonResponse
     {
         try {
             $promotions = $listAllPromotionsAction->execute();
 
             return new JsonResponse([
                 'success' => 1,
-                'error'   => null,
-                'data'    => [
+                'error' => null,
+                'data' => [
                     'promotions' => $promotions
                 ],
-                'errors'  => [],
-                'extra'   => []
+                'errors' => [],
+                'extra' => []
             ], 200);
-        }
-        catch (Exception $e){
+        } catch (Exception $e) {
             return new JsonResponse([
                 'success' => 0,
-                'error'   => $e->getMessage()
+                'error' => $e->getMessage()
             ], 500);
         }
     }

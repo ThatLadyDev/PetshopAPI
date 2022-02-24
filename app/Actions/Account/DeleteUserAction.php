@@ -2,12 +2,12 @@
 
 namespace App\Actions\Account;
 
-use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class DeleteUserAction
 {
-    public function execute() : void
+    public function execute(): void
     {
         /** @var User */
         $user = Auth::user();

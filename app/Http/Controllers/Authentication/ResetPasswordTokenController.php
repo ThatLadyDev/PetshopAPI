@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Authentication;
 
+use App\Actions\Auth\ResetPasswordTokenAction;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\ResetPasswordTokenRequest;
 use Exception;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use App\Http\Requests\Auth\ResetPasswordTokenRequest;
-use App\Actions\Auth\ResetPasswordTokenAction;
 
 class ResetPasswordTokenController extends Controller
 {
@@ -29,25 +28,26 @@ class ResetPasswordTokenController extends Controller
      *   @OA\Response(response=422,description="Unprocessable Entity")
      *),
      **/
-    public function __invoke(ResetPasswordTokenRequest $request, ResetPasswordTokenAction $resetPasswordTokenAction) : JsonResponse
-    {
+    public function __invoke(
+        ResetPasswordTokenRequest $request,
+        ResetPasswordTokenAction $resetPasswordTokenAction
+    ): JsonResponse {
         try {
             $resetPasswordTokenAction->execute($request);
 
             return new JsonResponse([
                 'success' => 1,
-                'data'    => [
+                'data' => [
                     'message' => 'Password has been successfully updated'
                 ],
-                'error'   => null,
-                'errors'  => [],
-                'extra'   => []
+                'error' => null,
+                'errors' => [],
+                'extra' => []
             ], 200);
-        }
-        catch (Exception $e){
+        } catch (Exception $e) {
             return new JsonResponse([
                 'success' => 0,
-                'error'   => $e->getMessage()
+                'error' => $e->getMessage()
             ], 500);
         }
     }

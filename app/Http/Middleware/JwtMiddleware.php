@@ -23,21 +23,20 @@ class JwtMiddleware
     /**
      * Handle an incoming request.
      *
-     * @param  Request  $request
-     * @param  Closure(\Illuminate\Http\Request): (\Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse)  $next
+     * @param Request $request
+     * @param Closure(\Illuminate\Http\Request): (\Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse)  $next
      * @return JsonResponse|RedirectResponse
      */
     public function handle(Request $request, Closure $next)
     {
         try {
-            if ($request->bearerToken() === null){
+            if ($request->bearerToken() === null) {
                 throw new Exception('Authorization Token Required!');
             }
             $token = $this->jwtService->verifyToken($request->bearerToken());
             $request->request->add(['uuid' => $token]);
-        }
-        catch (Exception $e) {
-            if ($e instanceof RequiredConstraintsViolated){
+        } catch (Exception $e) {
+            if ($e instanceof RequiredConstraintsViolated) {
                 return new JsonResponse(['message' => $e->getMessage()], 401);
             }
 

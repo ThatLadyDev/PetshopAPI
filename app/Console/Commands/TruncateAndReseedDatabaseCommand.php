@@ -36,12 +36,12 @@ class TruncateAndReseedDatabaseCommand extends Command
      *
      * @return void
      */
-    public function handle() : void
+    public function handle(): void
     {
         $bar = $this->output->createProgressBar(2);
         $bar->start();
 
-        for ($i = 0; $i < 2; $i++){
+        for ($i = 0; $i < 2; $i++) {
             $command = ($i === 0) ? 'migrate:fresh' : 'db:seed';
             $this->performTask($command);
             $bar->advance();
@@ -50,7 +50,7 @@ class TruncateAndReseedDatabaseCommand extends Command
         $bar->finish();
     }
 
-    public function performTask(string $command) : void
+    public function performTask(string $command): void
     {
         Artisan::call($command);
     }

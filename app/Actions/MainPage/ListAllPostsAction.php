@@ -7,7 +7,7 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class ListAllPostsAction
 {
-    public function execute() : LengthAwarePaginator
+    public function execute(): LengthAwarePaginator
     {
         return Post::orderBy('id', 'desc')->paginate(10);
     }

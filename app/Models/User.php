@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -66,8 +65,12 @@ class User extends Authenticatable
     protected $fillable = [
         'first_name',
         'last_name',
-        'uuid','is_admin',
-        'avatar','address','phone_number','is_marketing',
+        'uuid',
+        'is_admin',
+        'avatar',
+        'address',
+        'phone_number',
+        'is_marketing',
         'email',
         'password',
     ];
@@ -88,10 +91,10 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'is_admin'          => 'boolean',
-        'is_marketing'      => 'boolean',
+        'is_admin' => 'boolean',
+        'is_marketing' => 'boolean',
         'email_verified_at' => 'datetime',
-        'last_login_at'     => 'datetime'
+        'last_login_at' => 'datetime'
     ];
 
     // @phpstan-ignore-next-line

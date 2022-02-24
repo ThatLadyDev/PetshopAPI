@@ -4,12 +4,12 @@ namespace App\Services;
 
 use DateTimeImmutable;
 use Illuminate\Container\Container;
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
 use Lcobucci\JWT\Configuration;
 use Lcobucci\JWT\Token\Plain;
 use Lcobucci\JWT\Validation\Constraint\IssuedBy;
 use Lcobucci\JWT\Validation\Constraint\SignedWith;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 
 class JwtService
@@ -31,12 +31,12 @@ class JwtService
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
-    public function issueToken(String $uuid) : Plain
+    public function issueToken(string $uuid): Plain
     {
         $config = $this->container->get(Configuration::class);
         assert($config instanceof Configuration);
 
-        $now   = new DateTimeImmutable();
+        $now = new DateTimeImmutable();
         return $config->builder()
             // Configures the issuer (iss claim)
             ->issuedBy(config('app.url'))
@@ -52,7 +52,7 @@ class JwtService
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
-    public function verifyToken(string $bearerToken) : string
+    public function verifyToken(string $bearerToken): string
     {
         $config = $this->container->get(Configuration::class);
         assert($config instanceof Configuration);
@@ -69,6 +69,5 @@ class JwtService
         $config->validator()->assert($token, ...$constraints);
 
         return $token->claims()->get('user_uuid');
-
     }
 }

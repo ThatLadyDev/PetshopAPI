@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\MainPage;
 
+use App\Actions\MainPage\FetchAPostAction;
 use App\Http\Controllers\Controller;
+use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use App\Actions\MainPage\FetchAPostAction;
-use Exception;
 
 class FetchAPostController extends Controller
 {
@@ -25,29 +24,28 @@ class FetchAPostController extends Controller
      *   @OA\Response(response=422,description="Unprocessable Entity")
      *),
      **/
-    public function __invoke(string $uuid, FetchAPostAction $fetchAPostAction) : JsonResponse
+    public function __invoke(string $uuid, FetchAPostAction $fetchAPostAction): JsonResponse
     {
         try {
             $post = $fetchAPostAction->execute($uuid);
 
             return new JsonResponse([
                 'success' => 1,
-                'error'   => null,
-                'data'    => [
+                'error' => null,
+                'data' => [
                     'post' => $post
                 ],
-                'errors'  => [],
-                'extra'   => []
+                'errors' => [],
+                'extra' => []
             ], 200);
-        }
-        catch (Exception $e){
-            if ($e instanceof ModelNotFoundException ){
+        } catch (Exception $e) {
+            if ($e instanceof ModelNotFoundException) {
                 return new JsonResponse([
                     'success' => 0,
-                    'data'    => [],
-                    'error'   => 'Post not found',
-                    'errors'  => [],
-                    'extra'   => []
+                    'data' => [],
+                    'error' => 'Post not found',
+                    'errors' => [],
+                    'extra' => []
                 ], 422);
             }
 

@@ -8,12 +8,12 @@ use Illuminate\Contracts\Auth\Authenticatable;
 
 class SaveJwtTokenToDatabaseAction
 {
-    public function execute(Authenticatable|null $user, string $token) : void
+    public function execute(Authenticatable|null $user, string $token): void
     {
         // @phpstan-ignore-next-line
         $user->tokens()->create([
-            'unique_id'     => $token,
-            'token_title'   => 'Petshop User'
+            'unique_id' => $token,
+            'token_title' => 'Petshop User'
         ]);
     }
 }

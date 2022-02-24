@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Account;
 
+use App\Actions\Account\DeleteUserAction;
 use App\Http\Controllers\Controller;
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use App\Actions\Account\DeleteUserAction;
-use Exception;
 
 class DeleteUserController extends Controller
 {
@@ -24,20 +24,19 @@ class DeleteUserController extends Controller
      *   @OA\Response(response=422,description="Unprocessable Entity")
      *),
      **/
-    public function __invoke(Request $request, DeleteUserAction $deleteUserAction) : JsonResponse
+    public function __invoke(Request $request, DeleteUserAction $deleteUserAction): JsonResponse
     {
         try {
             $deleteUserAction->execute();
 
             return new JsonResponse([
                 'success' => 1,
-                "data"    => [],
-                "error"   => null,
-                "errors"  => [],
-                "extra"   => []
+                "data" => [],
+                "error" => null,
+                "errors" => [],
+                "extra" => []
             ], 200);
-        }
-        catch (Exception $e){
+        } catch (Exception $e) {
             return new JsonResponse(['success' => 0, 'error' => $e->getMessage()], 500);
         }
     }
