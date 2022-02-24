@@ -1,8 +1,39 @@
 <p align="center"><a href="#" target="_blank"><img src="https://res.cloudinary.com/xxsavage/image/upload/v1645652322/tumblr_pczuh2tk0G1vewxszo1_1280-removebg-preview.png" width="150"></a></p>
 
 ## About Petshop API
+This project is a test application for a pseudo petshop. The functionality I picked to work
+on are:
+- User Endpoints
+  - Login
+  - Logout
+  - Forgot password
+  - Reset password
+  - Registration
+  - Delete a user
+  - Get a single user (The authenticated user)
+  - Edit a single user (The authenticated user)
+- Admin Endpoints
+  - Login
+  - Logout
+  - Registration
+  - List users who are not admins
+- Main page endpoints
+  - List all created blog posts
+  - Fetch a single blog post
+  - Get all created promotions
 
-### Prerequisites
+**Others**
+- Api prefix `/api/v1/{route_name}`
+- Bearer token authentication.
+  - It contains user_uuid as a claim
+  - The issuer is the API server domain `http:127.0.0.1:9300`
+  - The implementation makes use of an asymmetric key
+- Middleware protection
+  - Implementation of laravel's default middleware to protect api routes and guard against injection attacks
+  - There is also another middleware to protect secure routes, this middleware validates the authenticity of the user token and allow only admin tokens into the administrative side and the user tokens on the user side
+- All listing routes implements pagination and orders in descending order
+
+## Prerequisites
 - **Composer**
 - **Xampp or its equivalent**
 
@@ -38,8 +69,25 @@ php artisan migrate
 php artisan serve --port 9300
 ```
 
-_The above command serves your application in the port 9300, 
+_The above command serves your application in the port 9300,
 feel free to change this to any port of your choosing_
+
+### Swagger API documentation URL
+```
+http://127.0.0.1:9300/api/documentation
+```
+
+## Application Logic Structure
+- All api routes are in the `routes/api.php` file
+- All controllers are in the `app/Http/Controllers` folder
+- Single action controllers are made use of.
+- Functionalities/Application logic is situated in the `app/Actions` folder, so as to avoid bloating the controller.
+- Lcobucci jwt token functionality is located in the `app/Services/JwtService.php` file
+- Middlewares are located in the `app/Http/Middleware` folder.
+- Custom guards are in the `app/Guards` folder.
+
+_A brief explanation of the logic structure of this application_
+> Routes->Controllers->Actions 
 
 ---
 ### Additional Libraries
@@ -59,5 +107,10 @@ To read more about this libarary, click <a href="https://github.com/DarkaOnLine/
 > value in the .env file to avoid a break in code
 
 > Do not forget to run `php artisan config:clear` after modifying the .env file
+
+> There are no web routes apart from that of the swagger api documentation, other urls will
+> return an error 404 page same as the UI for buckhill.
+> 
+> <img src="https://res.cloudinary.com/xxsavage/image/upload/v1645660227/Screenshot_30.png">
 
 

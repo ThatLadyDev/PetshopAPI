@@ -36,7 +36,7 @@ Route::group(['middleware' => ['jwt.verify', 'auth:api']], function () {
      * Admin URLs
      */
     Route::match(['get', 'head'], '/admin/logout', Authentication\LogoutController::class)->name('admin.logout');
-    Route::match(['get', 'head'], '/admin/user-listing', Account\ListUsersController::class); //still needs to be worked on
+    Route::match(['get', 'head'], '/admin/user-listing', Account\ListUsersController::class);
 
     /*
      * Mainpage URLs
