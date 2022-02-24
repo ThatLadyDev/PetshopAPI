@@ -12,6 +12,9 @@ parameters:
 
     ignoreErrors:
         - '#PHPDoc tag @var#'
+        - '#Cannot access property \$is_admin on (.*).#'
+        - '#Parameter (.*) \$message of class Exception constructor expects string, (.*) given.#'
+        - '#Call to function (.*) with (.*) will always evaluate to false.#'
 
     excludePaths:
         - ./*/*/FileToBeExcluded.php

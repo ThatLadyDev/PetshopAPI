@@ -50,7 +50,7 @@ class TruncateAndReseedDatabaseCommand extends Command
         $bar->finish();
     }
 
-    public function performTask($command) : void
+    public function performTask(string $command) : void
     {
         Artisan::call($command);
     }

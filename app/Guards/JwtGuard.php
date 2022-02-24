@@ -2,7 +2,6 @@
 
 namespace App\Guards;
 
-use Illuminate\Auth\AuthenticationException;
 use Illuminate\Auth\Events\Logout;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Guard;
@@ -13,6 +12,7 @@ use JsonException;
 
 class JwtGuard implements Guard
 {
+
     /**
      * The name of the guard.
      *
@@ -62,7 +62,6 @@ class JwtGuard implements Guard
     {
         $this->request  = $request;
         $this->provider = $provider;
-        $this->user     = NULL;
         $this->name     = 'api';
     }
 
